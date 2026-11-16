@@ -210,6 +210,7 @@
                                     </div>
                                 </div>
                             </div>
+<<<<<<< HEAD
                             <div class="col-md-6 d-grid gap-3 align-content-center">
                                 <div>
                                     <label for="itemWeight" class="form-label fw-medium">Item Weight</label>
@@ -227,6 +228,27 @@
                                             name="item_price" required min="0" step="0.01">
                                     </div>
                                 </div>
+=======
+                        </div>
+
+                        <!-- Weight Section -->
+                        <div class="mb-4">
+                            <label for="itemWeight" class="form-label fw-medium">Item Weight</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="itemWeight"
+                                    name="item_weight" required min="0" step="0.01">
+                                <span class="input-group-text bg-light">ton</span>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="itemPrice" class="form-label fw-medium">Item Price</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light">Rp</span>
+
+                                <input type="text" class="form-control" id="itemPrice"
+                                    name="item_price" inputmode="numeric" required>
+>>>>>>> 7d77160 (fix: add automatic thousand separator formatting to item price input)
                             </div>
                         </div>
 
@@ -348,11 +370,24 @@
             });
         });
 
+        // Format Item Price dengan pemisah ribuan otomatis (contoh: 150.000)
+        $('#itemPrice').on('input', function() {
+            let rawValue = $(this).val().replace(/\D/g, '');
+            if (rawValue !== '') {
+                $(this).val(Number(rawValue).toLocaleString('id-ID'));
+            } else {
+                $(this).val('');
+            }
+        });
+
         // Form Submission
         $('#itemForm').on('submit', function(e) {
             e.preventDefault();
 
             const formData = new FormData(this);
+            // Bersihkan titik pemisah ribuan agar backend menerima angka murni (contoh: 150000)
+            const cleanPrice = $('#itemPrice').val().replace(/\./g, '');
+            formData.set('item_price', cleanPrice);
 
             $.ajax({
                 url: '/blc-delivery/createItem',
@@ -388,7 +423,6 @@
                 }
             });
         });
-    });
 
     $(document).on('click', '.delete-item', function() {
         const itemId = $(this).data('id');
