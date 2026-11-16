@@ -173,7 +173,7 @@
                                 <div class="dynamic-row mb-3">
                                     <div class="row g-3">
                                         <div class="col-md-6">
-                                            <select class="form-select rawItemSelect" name="raw_item_needed[]">
+                                            <select class="form-select rawItemSelect" name="raw_item_needed[]" required>
                                                 <option value="">Select Raw Material</option>
                                                 @foreach($rawItems as $rawItem)
                                                 <option value="{{ $rawItem->id }}">{{ $rawItem->raw_item_name }}</option>
@@ -282,7 +282,7 @@
                                 <td class="px-3">{{ $item->item_weight }} ton</td>
                                 <td class="px-6">Rp {{ number_format($item->item_price) }}</td>
                                 <td class="px-3">
-                                    <button class="btn btn-action btn-delete delete-item" data-id="{{ $item->id }}}">
+                                    <button class="btn btn-action btn-delete delete-item" data-id="{{ $item->id }}">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </td>
