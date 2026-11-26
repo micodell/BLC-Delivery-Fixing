@@ -1,32 +1,16 @@
 @extends('layout.admin_home')
 @section('title', 'Room Management')
 @section('container')
-<style>
-    .admin-dashboard { background: #f8fafc; min-height: 100vh; padding: 2rem 0; }
-    .dashboard-card { background: #fff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,.05); padding: 2rem; margin-bottom: 2rem; }
-    .card-header { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.5rem; }
-    .card-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: #e0f2fe; color: #0284c7; border-radius: 10px; font-size: 1.25rem; }
-    .card-title { font-size: 1.25rem; font-weight: 600; color: #1e293b; margin: 0; }
-    .admin-dashboard .form-label { font-weight: 500; color: #475569; margin-bottom: .5rem; }
-    .admin-dashboard .form-control, .admin-dashboard .form-select { border: 1px solid #e2e8f0; border-radius: 8px; padding: .65rem .85rem; }
-    .admin-dashboard .form-control:focus, .admin-dashboard .form-select:focus { border-color: #0284c7; box-shadow: 0 0 0 3px rgba(2,132,199,.1); }
-    .admin-dashboard .table { margin-bottom: 0; }
-    .admin-dashboard .table thead th { background: #f8fafc; color: #475569; font-weight: 600; border-bottom: 2px solid #e2e8f0; }
-    .admin-dashboard .table th, .admin-dashboard .table td { padding: 1rem; vertical-align: middle; border-bottom: 1px solid #e2e8f0; }
-    @media (max-width: 768px) { .dashboard-card { padding: 1.25rem; } }
-</style>
-<div class="container mt-5 admin-dashboard">
+<div class="container mt-5">
     <!-- Button to toggle the form visibility -->
-    <button id="toggleFormButton" class="btn btn-primary mb-3">
-        <i class="bi bi-plus-circle me-2"></i> Create Room
+    <button id="toggleFormButton" class="btn btn-outline-secondary btn-sm mb-3">
+        <i class="bi bi-arrow-down-circle"></i> Create Room
     </button>
 
     <!-- Form Box (Initially hidden) -->
-    <div id="createRoomForm" class="form-box dashboard-card mb-4" style="display: none;">
-        <div class="card-header">
-            <div class="card-icon"><i class="bi bi-door-open"></i></div>
-            <h4 class="card-title">Create New Room</h4>
-        </div>
+    <div id="createRoomForm" class="form-box shadow-sm p-4 rounded mb-4" style="display: none;">
+        <h5>Create Room Form</h5>
+        <hr>
         <form action="/blc-delivery/createRoom" method="POST">
             @csrf
             <!-- Room Number and Room Description (Row 1) -->
@@ -414,13 +398,9 @@
     <!-- Existing Rooms List -->
     <div class="row mt-4">
         <div class="col-12">
-            <div class="dashboard-card">
-                <div class="card-header">
-                    <div class="card-icon"><i class="bi bi-grid"></i></div>
-                    <h4 class="card-title">Available Rooms</h4>
-                </div>
-                <div class="table-responsive">
-                <table id="roomsTable" class="table table-hover align-middle">
+            <div class="shadow-sm p-3 rounded">
+                <h5>Available Rooms</h5>
+                <table id="roomsTable" class="display">
                     <thead>
                         <tr>
                             <th>Created</th>
@@ -455,7 +435,6 @@
                         @endforeach
                     </tbody>
                 </table>
-                </div>
             </div>
         </div>
     </div>
