@@ -21,13 +21,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/laravel-echo/1.17.0/echo.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/laravel-echo/1.17.0/echo.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/2.2.0/js/dataTables.min.js"></script>
     <script src="{{ asset('js/simulationFunction.js') }}"></script>
-    <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}?v=2"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -52,5 +52,16 @@
     <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js"></script>
 
 </body>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleBtn = document.querySelector('.toggle-btn');
+    const sidebar = document.querySelector('#sidebar');
 
+    if (toggleBtn && sidebar) {
+        toggleBtn.addEventListener('click', function () {
+            sidebar.classList.toggle('expand');
+        });
+    }
+});
+</script>
 </html>
